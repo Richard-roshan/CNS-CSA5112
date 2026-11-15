@@ -1,0 +1,3 @@
+#include <stdio.h>
+#include <ctype.h>
+int main(){char a[5][5]={{'M','F','H','I','K'},{'U','N','O','P','Q'},{'Z','V','W','X','Y'},{'E','L','A','R','G'},{'D','S','T','B','C'}},s[1000],o[1200];int n=0,z=0;fgets(s,1000,stdin);for(int i=0;s[i];i++)if(isalpha(s[i])){s[n]=toupper(s[i]);if(s[n]=='J')s[n]='I';n++;}for(int i=0;i<n;){char x=s[i++],y=i<n?s[i]:'X';if(i<n&&x==y)y='X';else if(i<n)i++;int r=-1,c,u=-1,v;for(int p=0;p<5;p++)for(int q=0;q<5;q++){if(a[p][q]==x)r=p,c=q;if(a[p][q]==y)u=p,v=q;}if(r==u)o[z++]=a[r][(c+1)%5],o[z++]=a[u][(v+1)%5];else if(c==v)o[z++]=a[(r+1)%5][c],o[z++]=a[(u+1)%5][v];else o[z++]=a[r][v],o[z++]=a[u][c];}o[z]=0;puts(o);}

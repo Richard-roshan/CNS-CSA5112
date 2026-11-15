@@ -1,0 +1,3 @@
+#include <stdio.h>
+int m(int x){x%=26;return x<0?x+26:x;}int iv(int x){for(int i=1;i<26;i++)if(m(x*i)==1)return i;return -1;}
+int main(){int p[2][2],c[2][2],q[2][2],d;puts("Enter P matrix (4 integers row-wise):");scanf("%d%d%d%d",&p[0][0],&p[0][1],&p[1][0],&p[1][1]);puts("Enter C matrix (4 integers row-wise):");scanf("%d%d%d%d",&c[0][0],&c[0][1],&c[1][0],&c[1][1]);d=m(p[0][0]*p[1][1]-p[0][1]*p[1][0]);int z=iv(d);if(z<0)return puts("P is not invertible mod 26; supply different pairs."),1;q[0][0]=m(p[1][1]*z);q[0][1]=m(-p[0][1]*z);q[1][0]=m(-p[1][0]*z);q[1][1]=m(p[0][0]*z);puts("Recovered key K=C*inverse(P) mod 26:");for(int i=0;i<2;i++){for(int j=0;j<2;j++)printf("%d ",m(c[i][0]*q[0][j]+c[i][1]*q[1][j]));puts("");}}
