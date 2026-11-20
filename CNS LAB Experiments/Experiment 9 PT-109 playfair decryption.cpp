@@ -1,4 +1,0 @@
-#include <stdio.h>
-#include <ctype.h>
-void mk(char*k,char a[5][5]){int u[26]={0},n=0;char t[25];for(int z=0;z<2;z++){char*p=z?"ABCDEFGHIKLMNOPQRSTUVWXYZ":k;for(;*p;p++){int x=toupper(*p)-65;if(x<0||x>25)continue;if(x==9)x=8;if(!u[x])u[x]=1,t[n++]=x+65;}}for(int i=0;i<25;i++)a[i/5][i%5]=t[i];}void ps(char a[5][5],char c,int*r,int*q){if(c=='J')c='I';for(int i=0;i<5;i++)for(int j=0;j<5;j++)if(a[i][j]==c)*r=i,*q=j;}
-int main(){char k[100],s[]="KXJEY UREBE ZWEHE WRYTU HEYFS KREHE GOYFI WTTTU OLKSY CAJPO BOTEI ZONTX BYBNT GONEY CUZWR GDSON SXBOU YWRHE BAAHY USEDQ",o[200];int n=0;printf("Original keyword: ");scanf("%99s",k);char a[5][5];mk(k,a);for(int i=0;s[i];i++)if(s[i]!=' ')s[n++]=s[i];for(int i=0;i<n;i+=2){int r,c,x,y;ps(a,s[i],&r,&c);ps(a,s[i+1],&x,&y);if(r==x)o[i]=a[r][(c+4)%5],o[i+1]=a[x][(y+4)%5];else if(c==y)o[i]=a[(r+4)%5][c],o[i+1]=a[(x+4)%5][y];else o[i]=a[r][y],o[i+1]=a[x][c];}o[n]=0;puts(o);}
